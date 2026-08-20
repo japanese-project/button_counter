@@ -12,9 +12,11 @@ project isn't carrying two DB clients for two different jobs anymore.
 
 - `db/schema.ts` — the schema, defined in TypeScript with `drizzle-orm/sqlite-core`.
   This is the source of truth; edit it, don't hand-write SQL.
-- `db/migrations/` — generated, versioned SQL migration files. `meta/` (the
-  journal + schema snapshots `drizzle-kit` uses to compute the next diff) is
-  gitignored and not pushed.
+- `db/migrations/` — generated, versioned SQL migration files plus metadata
+  (`meta/_journal.json`, `meta/*_snapshot.json`) that `drizzle-kit` needs to
+  compute the next migration as a diff. Both are committed — generated, not
+  hand-edited, but required for `db:generate` to work correctly on a fresh
+  clone.
 - `drizzle.config.ts` — tells `drizzle-kit` where the schema and migrations
   live, and how to reach the DB (reuses `TURSO_DATABASE_URL` / `TURSO_AUTH_TOKEN`
   from `.env`).
