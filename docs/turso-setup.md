@@ -28,7 +28,7 @@ password manager) — never in git or an issue comment.
 ## 4. Install the client package
 
 ```bash
-npm install @tursodatabase/serverless
+npm install @libsql/client
 ```
 
 ## 5. Create `.env` (gitignored, not committed)
@@ -44,10 +44,10 @@ the repo knows what to configure.
 ## 6. Server-only DB client — `src/lib/server/db.ts`
 
 ```ts
-import { connect } from '@tursodatabase/serverless';
 import { TURSO_DATABASE_URL, TURSO_AUTH_TOKEN } from '$env/static/private';
+import { createClient } from '@libsql/client';
 
-export const db = connect({
+export const turso = createClient({
 	url: TURSO_DATABASE_URL,
 	authToken: TURSO_AUTH_TOKEN
 });

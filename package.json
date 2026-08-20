@@ -13,8 +13,7 @@
 		"lint": "prettier --check .",
 		"format": "prettier --write .",
 		"db:generate": "drizzle-kit generate",
-		"db:migrate": "drizzle-kit migrate",
-		"db:baseline": "node --env-file=.env scripts/baseline-migration.mjs"
+		"db:migrate": "drizzle-kit migrate"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^7.0.1",
