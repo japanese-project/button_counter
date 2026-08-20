@@ -37,7 +37,12 @@ Pick an issue → branch off main → do the work → check it → commit → pu
    git push -u origin feature/issue-<number>-<short-description>
    ```
 
-6. **Open a PR** into `main` with a short description of what and why. Link the issue it closes (e.g. `Closes #12`).
+   Note: `issue-<number>:` in a commit message is just a readability
+   convention — GitHub does **not** turn it into a link. It only auto-links
+   (and auto-closes on merge) when the text is the literal `#<number>`, e.g.
+   `Closes #12` — see the next step.
+
+6. **Open a PR** into `main` with a short description of what and why. Put `Closes #12` (using the real issue number, `#` required) in the PR body — that's what actually links and auto-closes the issue when the PR merges.
 
 7. **Address review feedback** with new commits on the same branch — the PR updates automatically.
 
