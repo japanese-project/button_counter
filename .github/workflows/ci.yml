@@ -1,0 +1,106 @@
+﻿name: CI
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+env:
+  NODE_VERSION: 24
+
+jobs:
+  validate-names:
+    name: Validate naming conventions
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate branch, PR title, and commit messages
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pullRequest = context.payload.pull_request;
+            const errors = [];
+
+            const branch = pullRequest.head.ref;
+            const branchPattern = /^feature\/issue-\d+-[a-z0-9]+(?:-[a-z0-9]+)*$/;
+            if (!branchPattern.test(branch)) {
+              errors.push(
+                `Branch "${branch}" must match ` +
+                'feature/issue-<issue-number>-<short-description>.\n' +
+                'Example: feature/issue-12-button-counter'
+              );
+            }
+
+            const title = pullRequest.title.trim();
+            const titlePattern = /^Close #\d+ .+$/;
+            if (!titlePattern.test(title)) {
+              errors.push(
+                `PR title "${title}" must match ` +
+                'Close #<issue-number> <description>.\n' +
+                'Example: Close #12 Add button counter'
+              );
+            }
+
+            const commits = await github.paginate(
+              github.rest.pulls.listCommits,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pullRequest.number,
+                per_page: 100
+              }
+            );
+
+            const commitPattern = /^Close #\d+ .+$/;
+            const invalidCommits = commits
+              .map(({ commit }) => commit.message.split('\n')[0].trim())
+              .filter((message) => !commitPattern.test(message));
+
+            if (invalidCommits.length > 0) {
+              errors.push(
+                'The following commit messages do not match the required format:\n- ' +
+                invalidCommits.join('\n- ') +
+                '\n\nEach commit message must start with ' +
+                '"Close #<issue-number> <description>".\n' +
+                'Example: Close #12 Add button counter'
+              );
+            }
+
+            if (errors.length > 0) {
+              core.setFailed(errors.join('\n\n'));
+            }
+
+  quality:
+    name: Check and build
+    runs-on: ubuntu-latest
+
+    env:
+      TURSO_DATABASE_URL: file:ci.db
+      TURSO_AUTH_TOKEN: ci-placeholder
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check Svelte and TypeScript
+        run: npm run check
+
+      - name: Build production application
+        run: npm run build
