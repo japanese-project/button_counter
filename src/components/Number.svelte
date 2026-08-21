@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-  import { cubicOut } from 'svelte/easing';
+	import { cubicOut } from 'svelte/easing';
 
 	interface Props {
 		count: number;
