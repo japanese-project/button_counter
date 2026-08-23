@@ -7,10 +7,6 @@
 
 	const count = countLive();
 	let liveCount: number = $derived(count.current ?? 0);
-
-	function incrementLocally(): void {
-		liveCount += 1;
-	}
 </script>
 
 <svelte:head>
@@ -28,7 +24,9 @@
 		<NumberDisplay count={liveCount} />
 
 		<form method="POST" action="?/increment" use:enhance>
-			<CounterButton onTrigger={incrementLocally} />
+			<CounterButton onTrigger={() => {
+				liveCount++;
+			}} />
 		</form>
 	</main>
 </div>
