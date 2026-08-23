@@ -2,14 +2,14 @@ import { db } from '$lib/server/db';
 import { eq, sql } from 'drizzle-orm';
 import { counter } from '../../db/schema';
 
-const TIMEOUT = 3000;
+const TIMEOUT = 1000;
 
 let count: number = 0;
 let started: boolean = false;
 let timer: NodeJS.Timeout | null = null;
 
-export function incrementCount() {
-	count++;
+export async function incrementCount({ increment }: { increment: number }) {
+	count += increment;
 
 	if (timer) {
 		clearTimeout(timer);
@@ -18,7 +18,7 @@ export function incrementCount() {
 	timer = setTimeout(async () => {
 		await db
 			.update(counter)
-			.set({ count: sql`${counter.count} + 1` })
+			.set({ count: sql`${counter.count} + ${increment}` })
 			.where(eq(counter.id, 1))
 			.run();
 

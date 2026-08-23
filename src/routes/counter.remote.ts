@@ -15,6 +15,6 @@ export const countLive = query.live(async function* () {
 	while (true) {
 		const nextCount = await getCount();
 		yield nextCount;
-		await delay(500);
+		await delay(1000);
 	}
 });
