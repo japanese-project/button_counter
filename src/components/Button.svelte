@@ -21,22 +21,6 @@
 	}
 </script>
 
-<div class="button-rim">
-	<button
-		type="submit"
-		{disabled}
-		class:pressed
-		onmousedown={() => (pressed = true)}
-		onmouseup={() => (pressed = false)}
-		onmouseleave={() => (pressed = false)}
-		ontouchstart={() => (pressed = true)}
-		ontouchend={() => (pressed = false)}
-		onclick={handleClick}
-		aria-label="Increase counter by one"
-	>
-		<span class="led" class:active={ledOn}></span>
-	</button>
-</div>
 <div
 	class="rounded-3xl bg-[#1e232a] p-2.5 shadow-[inset_0_2px_4px_rgb(255_255_255/8%),0_16px_32px_rgb(0_0_0/30%)]"
 >
