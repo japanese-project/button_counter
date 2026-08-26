@@ -1,5 +1,5 @@
 import { afterEach, expect, test, vi } from 'vitest';
-import { getCount, incrementCount } from '../src/routes/counter';
+import { get_count, increment_count } from '../src/routes/counter';
 
 vi.mock('$lib/server/db', () => ({
 	db: {
@@ -19,14 +19,14 @@ afterEach(() => {
 test('incrementCount increments the count', async () => {
 	vi.useFakeTimers();
 
-	expect(await getCount()).toBe(0);
+	expect(await get_count()).toBe(0);
 
-	incrementCount();
-	expect(await getCount()).toBe(1);
+	increment_count();
+	expect(await get_count()).toBe(1);
 
-	incrementCount();
-	expect(await getCount()).toBe(2);
+	increment_count();
+	expect(await get_count()).toBe(2);
 
-	incrementCount();
-	expect(await getCount()).toBe(3);
+	increment_count();
+	expect(await get_count()).toBe(3);
 });
