@@ -1,5 +1,5 @@
 import { query } from '$app/server'
-import { getCount } from './counter.ts'
+import { get_count } from './counter.ts'
 
 /**
  * @param {number} milliseconds
@@ -11,10 +11,10 @@ function delay(milliseconds: number) {
 	})
 }
 
-export const countLive = query.live(async function* () {
+export const count_live = query.live(async function* () {
 	while (true) {
-		const nextCount = await getCount()
-		yield nextCount
+		const next_count = await get_count()
+		yield next_count
 		await delay(500)
 	}
 })

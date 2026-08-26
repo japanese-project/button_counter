@@ -8,7 +8,7 @@ let count: number = 0
 let started: boolean = false
 let timer: NodeJS.Timeout | null = null
 
-export function incrementCount() {
+export function increment_count() {
 	count++
 
 	if (timer) {
@@ -26,7 +26,7 @@ export function incrementCount() {
 	}, TIMEOUT)
 }
 
-export async function getCount() {
+export async function get_count() {
 	if (!started) {
 		const result = await db.select().from(counter).where(eq(counter.id, 1)).get()
 		count = result?.count ?? 0
