@@ -1,10 +1,9 @@
 import adapter from '@sveltejs/adapter-node'
-import { sveltekit } from '@sveltejs/kit/vite'
 import { defineConfig } from 'vitest/config'
+import { sveltekit } from '@sveltejs/kit/vite'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-	resolve: process.env.VITEST ? { conditions: ['browser'] } : undefined,
 	plugins: [
 		tailwindcss(),
 		sveltekit({
