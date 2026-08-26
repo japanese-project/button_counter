@@ -10,6 +10,8 @@
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"test": "vitest run",
+		"lint": "prettier --check .",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"db:generate": "drizzle-kit generate",
@@ -25,6 +27,8 @@
 		"@sveltejs/kit": "^2.63.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@tailwindcss/vite": "^4.3.3",
+		"drizzle-kit": "^0.31.10",
+		"drizzle-orm": "^0.45.2",
 		"@types/node": "^24",
 		"drizzle-kit": "^0.31.10",
 		"drizzle-orm": "^0.45.2",
@@ -38,6 +42,8 @@
 		"svelte-check": "^4.6.0",
 		"tailwindcss": "^4.3.3",
 		"typescript": "^6.0.3",
+		"vite": "^8.0.16",
+		"vitest": "^4.1.11"
 		"typescript-eslint": "^8.60.1",
 		"vite": "^8.0.16"
 	},
