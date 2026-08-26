@@ -1,23 +1,23 @@
 <script lang="ts">
 	interface Props {
-		onTrigger?: () => void;
-		disabled?: boolean;
+		onTrigger?: () => void
+		disabled?: boolean
 	}
 
-	let { onTrigger, disabled = false }: Props = $props();
+	let { onTrigger, disabled = false }: Props = $props()
 
-	let pressed: boolean = $state(false);
-	let ledOn: boolean = $state(false);
+	let pressed: boolean = $state(false)
+	let ledOn: boolean = $state(false)
 
 	function handleClick(): void {
-		if (disabled) return;
+		if (disabled) return
 
-		ledOn = true;
-		onTrigger?.();
+		ledOn = true
+		onTrigger?.()
 
 		setTimeout((): void => {
-			ledOn = false;
-		}, 120);
+			ledOn = false
+		}, 120)
 	}
 </script>
 
@@ -32,7 +32,7 @@
 			pressed
 				? 'translate-y-1 scale-[0.97] shadow-inner'
 				: 'shadow-[0_8px_0_#07090c,0_14px_24px_rgb(0_0_0/35%)] hover:scale-[1.015]',
-			disabled && 'cursor-not-allowed opacity-50'
+			disabled && 'cursor-not-allowed opacity-50',
 		]}
 		onpointerdown={() => (pressed = true)}
 		onpointerup={() => (pressed = false)}
@@ -44,7 +44,7 @@
 		<span
 			class={[
 				'absolute top-4 right-4 h-2.5 w-2.5 rounded-full transition-all duration-100',
-				ledOn ? 'bg-white shadow-[0_0_12px_3px_white]' : 'bg-gray-600'
+				ledOn ? 'bg-white shadow-[0_0_12px_3px_white]' : 'bg-gray-600',
 			]}
 		>
 		</span>

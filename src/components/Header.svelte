@@ -1,5 +1,5 @@
 <script lang="ts">
-	const title: string = 'Button Counter';
+	const title: string = 'Button Counter'
 </script>
 
 <header class="w-full border-b border-black/10 py-4 text-center select-none">

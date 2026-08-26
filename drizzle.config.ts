@@ -1,10 +1,10 @@
-import { defineConfig } from 'drizzle-kit';
+import { defineConfig } from 'drizzle-kit'
 
-const { TURSO_DATABASE_URL, TURSO_AUTH_TOKEN } = process.env;
+const { TURSO_DATABASE_URL, TURSO_AUTH_TOKEN } = process.env
 if (!TURSO_DATABASE_URL || !TURSO_AUTH_TOKEN) {
 	throw new Error(
-		'TURSO_DATABASE_URL and TURSO_AUTH_TOKEN must be set (see .env / docs/turso-setup.md).'
-	);
+		'TURSO_DATABASE_URL and TURSO_AUTH_TOKEN must be set (see .env / docs/turso-setup.md).',
+	)
 }
 
 export default defineConfig({
@@ -13,6 +13,6 @@ export default defineConfig({
 	out: './db/migrations',
 	dbCredentials: {
 		url: TURSO_DATABASE_URL,
-		authToken: TURSO_AUTH_TOKEN
-	}
-});
+		authToken: TURSO_AUTH_TOKEN,
+	},
+})
