@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
-	import { cubicOut } from 'svelte/easing';
+	import { fly } from 'svelte/transition'
+	import { cubicOut } from 'svelte/easing'
 
 	interface Props {
-		count: number;
+		count: number
 	}
 
-	let { count }: Props = $props();
+	let { count }: Props = $props()
 </script>
 
 <div class="grid min-h-40 w-full place-items-center overflow-hidden select-none">
@@ -16,12 +16,12 @@
 			in:fly={{
 				y: -30,
 				duration: 300,
-				easing: cubicOut
+				easing: cubicOut,
 			}}
 			out:fly={{
 				y: 30,
 				duration: 200,
-				easing: cubicOut
+				easing: cubicOut,
 			}}
 		>
 			{count.toLocaleString()}

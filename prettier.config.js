@@ -2,11 +2,11 @@
 const config = {
 	useTabs: true,
 	singleQuote: true,
-	semi:false,
+	semi: false,
 	trailingComma: 'all',
 	printWidth: 100,
 	plugins: ['prettier-plugin-svelte'],
-	overrides: [{ files: '*.svelte', options: { parser: 'svelte' } }]
-};
+	overrides: [{ files: '*.svelte', options: { parser: 'svelte' } }],
+}
 
-export default config;
+export default config
