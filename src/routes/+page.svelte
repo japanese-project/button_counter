@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import Header from '../components/Header.svelte';
-	import NumberDisplay from '../components/Number.svelte';
-	import CounterButton from '../components/Button.svelte';
-	import { countLive } from './counter.remote';
+	import { enhance } from '$app/forms'
+	import Header from '../components/Header.svelte'
+	import NumberDisplay from '../components/Number.svelte'
+	import CounterButton from '../components/Button.svelte'
+	import { count_live } from './counter.remote'
 
-	const count = countLive();
-	let liveCount: number = $derived(count.current ?? 0);
+	const count = count_live()
+	let live_count: number = $derived(count.current ?? 0)
 </script>
 
 <svelte:head>
@@ -21,12 +21,14 @@
 	<Header />
 
 	<main class="flex min-h-[calc(100vh-57px)] flex-col items-center justify-center gap-8 px-4 py-8">
-		<NumberDisplay count={liveCount} />
+		<NumberDisplay count={live_count} />
 
 		<form method="POST" action="?/increment" use:enhance>
-			<CounterButton onTrigger={() => {
-				liveCount++;
-			}} />
+			<CounterButton
+				on_trigger={() => {
+					live_count++
+				}}
+			/>
 		</form>
 	</main>
 </div>
