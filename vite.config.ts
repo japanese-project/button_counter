@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import adapter from '@sveltejs/adapter-node';
 import { defineConfig } from 'vitest/config';
-=======
-import adapter from '@sveltejs/adapter-node'
->>>>>>> c1dede6 (Revert "Merge pull request #49 from japanese-project/feature/issue-44-apply-test-and-run")
 import { sveltekit } from '@sveltejs/kit/vite'
 import tailwindcss from '@tailwindcss/vite'
 
