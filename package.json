@@ -13,16 +13,19 @@
 		"lint": "prettier --check .",
 		"format": "prettier --write .",
 		"db:generate": "drizzle-kit generate",
-		"db:migrate": "drizzle-kit migrate"
+		"db:migrate": "drizzle-kit migrate",
+		"test:e2e": "playwright install && playwright test",
+		"test": "npm run test:e2e"
 	},
 	"devDependencies": {
+		"@playwright/test": "^1.60.0",
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/adapter-node": "^5.5.7",
 		"@sveltejs/kit": "^2.63.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@tailwindcss/vite": "^4.3.3",
 		"drizzle-kit": "^0.31.10",
 		"drizzle-orm": "^0.45.2",
-		"@tailwindcss/vite": "^4.3.3",
 		"prettier": "^3.8.3",
 		"prettier-plugin-svelte": "^4.1.0",
 		"svelte": "^5.56.1",
