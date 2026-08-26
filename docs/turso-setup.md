@@ -44,13 +44,13 @@ the repo knows what to configure.
 ## 6. Server-only DB client — `src/lib/server/db.ts`
 
 ```ts
-import { TURSO_DATABASE_URL, TURSO_AUTH_TOKEN } from '$env/static/private';
-import { createClient } from '@libsql/client';
+import { TURSO_DATABASE_URL, TURSO_AUTH_TOKEN } from '$env/static/private'
+import { createClient } from '@libsql/client'
 
 export const turso = createClient({
 	url: TURSO_DATABASE_URL,
-	authToken: TURSO_AUTH_TOKEN
-});
+	authToken: TURSO_AUTH_TOKEN,
+})
 ```
 
 Living under `src/lib/server/` keeps it out of client-side bundles.
