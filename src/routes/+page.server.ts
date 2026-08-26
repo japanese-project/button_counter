@@ -1,9 +1,9 @@
-import type { Actions } from './$types';
-import { incrementCount } from './counter.ts';
+import type { Actions } from './$types'
+import { increment_count } from './counter.ts'
 
 export const actions = {
 	increment: async () => {
-		incrementCount();
-		return { success: true };
-	}
-} satisfies Actions;
+		increment_count()
+		return { success: true }
+	},
+} satisfies Actions
