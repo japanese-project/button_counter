@@ -13,9 +13,12 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"db:generate": "drizzle-kit generate",
-		"db:migrate": "drizzle-kit migrate"
+		"db:migrate": "drizzle-kit migrate",
+		"test:e2e": "playwright install && playwright test",
+		"test": "npm run test:e2e"
 	},
 	"devDependencies": {
+		"@playwright/test": "^1.60.0",
 		"@eslint/js": "^10.0.1",
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/adapter-node": "^5.5.7",
